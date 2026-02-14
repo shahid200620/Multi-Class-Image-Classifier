@@ -11,45 +11,61 @@ The system supports multi-class image classification across at least ten categor
 ### Project Structure
 
 data/ – dataset after preprocessing
+
 model/ – trained model artifact
+
 results/ – evaluation metrics output
+
 src/ – all source code
+
 Dockerfile – container configuration
+
 docker-compose.yml – service orchestration
+
 requirements.txt – Python dependencies
+
 .env.example – environment variables template
+
 README.md – documentation
 
-Technologies Used
+### Technologies Used
 
 Python
+
 PyTorch
+
 Torchvision
+
 FastAPI
+
 Uvicorn
+
 Scikit-Learn
+
 Pillow
+
 Docker
+
 Docker Compose
 
-Setup Instructions (Local Run)
+### Setup Instructions (Local Run)
 
-Install dependencies
+1.Install dependencies
 Activate a virtual environment and install required libraries using requirements.txt.
 
-Download and preprocess dataset
+2.Download and preprocess dataset
 Run the preprocessing script to automatically download and organize the dataset into training and validation folders.
 
-Train the model
+3.Train the model
 Execute the training script to fine-tune the transfer learning model and save the trained weights inside the model directory.
 
-Evaluate the model
+4.Evaluate the model
 Run the evaluation script to generate performance metrics. This will create a metrics.json file inside the results directory containing accuracy, precision, recall, and confusion matrix.
 
-Start API server locally
+5.Start API server locally
 Run the FastAPI server and open the documentation interface in your browser. Use the /predict endpoint to upload an image and receive the predicted class and confidence score.
 
-Docker Setup
+### Docker Setup
 
 Make sure Docker Desktop is installed and running.
 
@@ -66,12 +82,12 @@ POST /predict
 
 The API accepts an image file and returns the predicted class with a confidence value.
 
-Environment Variables
+### Environment Variables
 
 API_PORT – Port where the API server runs
 MODEL_PATH – Path to the trained model file inside the container
 
-Model Details
+### Model Details
 
 A pre-trained MobileNetV2 architecture is used for transfer learning.
 The final classification layer is modified to match the dataset classes.
@@ -79,18 +95,21 @@ Data augmentation techniques such as horizontal flip and rotation are applied du
 
 The trained model is saved in PyTorch format and loaded by the API for inference.
 
-Evaluation Metrics
+### Evaluation Metrics
 
 After running the evaluation script, a JSON file is generated containing:
 
 Accuracy
+
 Weighted precision
+
 Weighted recall
+
 Confusion matrix
 
 These metrics are calculated on the validation dataset.
 
-API Usage
+### API Usage
 
 Send a POST request to /predict with an image file in form-data.
 The response returns:
@@ -100,16 +119,19 @@ confidence – probability score between 0 and 1
 
 Invalid file uploads return descriptive error messages.
 
-Running with Docker Compose
+###Running with Docker Compose
 
 Build and start the containerized service.
+
 Once running, the health endpoint can be used to verify the service status.
+
 The model directory is mounted so the API can access the trained weights.
 
-Notes
+### Notes
 
 This project focuses on building a complete pipeline from data preprocessing to deployment. Model accuracy may vary depending on training time and hardware, but the primary objective is demonstrating a working end-to-end system.
 
-Author
+### Author
 
 Shahid Mohammed
+
